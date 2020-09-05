@@ -2,16 +2,26 @@ import axios from 'axios';
 
 const baseUrl = 'http://localhost:8000/'
 
-const login = (data)=> {
-    console.log(data)
+export const login = (data, callbaack)=> {
     axios.post(baseUrl + 'user/login', {
         data: data
     })
-    .then(res => {
-        console.log(res);
+    .then(res=> {
+        callbaack(res.data)
+    })
+    .catch(res=> {
+        // Handle later
     })
 }
- 
-export  {
-    login
-};
+
+export const register = (data, callback)=> {
+    axios.post(baseUrl + 'user/register', {
+        data: data
+    })
+    .then(res=> {
+        callback(res)
+    })
+    .catch(res=> {
+        // Handle later
+    })
+}

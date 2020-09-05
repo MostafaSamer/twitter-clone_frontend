@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class HomeComponent extends Component {
     state = {  }
-    render() { 
+    render() {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'))
+        if(currentUser === null) {
+            this.handleLogout()
+        }
         return ( 
             <React.Fragment>
                 Welcome Home!
@@ -12,8 +16,9 @@ class HomeComponent extends Component {
          );
     }
     handleLogout = ()=> {
-        return(<Redirect push to='/login' />)
+        localStorage.setItem('currentUser', null)
+        this.props.history.push('/login')
     }
 }
  
-export default HomeComponent;
+export default withRouter(HomeComponent);
