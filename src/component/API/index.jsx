@@ -19,7 +19,7 @@ export const register = (data, callback)=> {
         data: data
     })
     .then(res=> {
-        callback(res)
+        callback(res.data)
     })
     .catch(res=> {
         // Handle later
