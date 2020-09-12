@@ -6,20 +6,21 @@ import './searchBar.css'
 class SearchBar extends Component {
     state = { 
         searchKey: '',
-        searchResult: []
+        searchResult: [],
     }
 
     render() {
         return ( 
             <React.Fragment>
-                <div className="text-center">
+                <div className="text-center searchResult">
                     <form className="form-search" onSubmit={ this.handleFormSubmit }>
-                        <input className="form-control mb-3" placeholder="Search Twitter" type="text" name="searchKey" required autoFocus onChange={ this.handleChangeInput } value={ this.state.searchKey }/>
+                        <input className="form-control mb-3" placeholder="Search Twitter" type="search" name="searchKey" required autoFocus onChange={ this.handleChangeInput } value={ this.state.searchKey }/>
                     </form>
-                    { this.state.searchResult.map(user=> { return<div key={user._id}>{user.name}</div> }) }
+                    { this.state.searchResult.length? <div className="searchResult-outer"> { this.state.searchResult.map(user=> { return( <div key={user._id}>{user.name}</div> ) }) }</div> : <div></div> }
                 </div>
             </React.Fragment>
         );
+        
     }
 
     handleChangeInput = async(e)=> {
@@ -32,10 +33,6 @@ class SearchBar extends Component {
                 searchResult: res.data
             })
         })
-    }
-
-    showResult = ()=> {
-        //return this.state.searchResult.length?  : <div>No user Founded</div>
     }
     
     handleFormSubmit = (e)=> {

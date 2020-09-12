@@ -56,7 +56,7 @@ class LoginComponent extends Component {
                 this.setState({ err })
             } else {
                 
-                localStorage.setItem('currentUser', JSON.stringify(res.data._id))
+                localStorage.setItem('currentUser', JSON.stringify(res.data))
                 this.props.history.push('/')
             }
             
