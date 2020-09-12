@@ -19,23 +19,23 @@ class LoginComponent extends Component {
         return ( 
             <React.Fragment>
                 <div className="row">
-                        <div className="col-6">
-                            <SideDiv />
-                        </div>
-                        <div className="col-6 text-center">
-                            <form className="form-signin" onSubmit={ this.handleFormSubmit }>
-                                <img className="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
-                                <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-                                <div className="err mb-3 text-danger">{ this.state.err }</div>
-                                <input className="form-control mb-3" placeholder="Email address" type="text" name="email" required autoFocus onChange={ this.handleChangeInput } value={ this.state.email }/>
-                                <input className="form-control mb-3" placeholder="Password" type="password" name="password" required autoFocus onChange={ this.handleChangeInput } value={ this.state.password }/>
-                                <button className="btn btn-lg btn-outline-primary btn-block mt-3" type="submit">Login</button>
-                            </form>
-                            <Link to="/register">Sign up for twitter</Link>
-                        </div>
+                    <div className="col-6">
+                        <SideDiv />
                     </div>
+                    <div className="col-6 text-center">
+                        <form className="form-signin" onSubmit={ this.handleFormSubmit }>
+                            <img className="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
+                            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                            <div className="err mb-3 text-danger">{ this.state.err }</div>
+                            <input className="form-control mb-3" placeholder="Email address" type="text" name="email" required autoFocus onChange={ this.handleChangeInput } value={ this.state.email }/>
+                            <input className="form-control mb-3" placeholder="Password" type="password" name="password" required onChange={ this.handleChangeInput } value={ this.state.password }/>
+                            <button className="btn btn-lg btn-outline-primary btn-block mt-3" type="submit">Login</button>
+                        </form>
+                        <Link to="/register">Sign up for twitter</Link>
+                    </div>
+                </div>
             </React.Fragment>
-         );
+        );
     }
 
     handleChangeInput = (e)=> {
@@ -55,7 +55,8 @@ class LoginComponent extends Component {
                 let err = res.msg
                 this.setState({ err })
             } else {
-                localStorage.setItem('currentUser', JSON.stringify(res.data))
+                
+                localStorage.setItem('currentUser', JSON.stringify(res.data._id))
                 this.props.history.push('/')
             }
             
@@ -63,5 +64,5 @@ class LoginComponent extends Component {
     }
 
 }
- 
+
 export default withRouter(LoginComponent);

@@ -2,12 +2,11 @@ import axios from 'axios';
 
 const baseUrl = 'http://localhost:8000/'
 
-export const login = (data, callbaack)=> {
-    axios.post(baseUrl + 'user/login', {
-        data: data
-    })
+export const login = (data, callback)=> {
+    axios.post(baseUrl + 'user/login', {data})
     .then(res=> {
-        callbaack(res.data)
+        console.log('API : ', res);
+        callback(res.data)
     })
     .catch(res=> {
         // Handle later
@@ -15,9 +14,17 @@ export const login = (data, callbaack)=> {
 }
 
 export const register = (data, callback)=> {
-    axios.post(baseUrl + 'user/register', {
-        data: data
+    axios.post(baseUrl + 'user/register', {data})
+    .then(res=> {
+        callback(res.data)
     })
+    .catch(res=> {
+        // Handle later
+    })
+}
+
+export const search = (data, callback)=> {
+    axios.post(baseUrl + 'search', {data})
     .then(res=> {
         callback(res.data)
     })

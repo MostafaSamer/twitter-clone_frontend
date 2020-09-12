@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { register } from "../../API/index.jsx";
 import SideDiv from '../sideDiv/sideDiv'
+
 class RegisterComponent extends Component {
     state = {
         name: '',
@@ -34,21 +35,21 @@ class RegisterComponent extends Component {
                         <div className="err mb-3 text-success">{ this.state.msg }</div>
                         <input className="form-control mb-3" autoFocus placeholder="Name" type="text" name="name" onChange={ this.handleChangeInput } value={ this.state.name }/>
                         <div className="err mb-3 text-danger">{ this.state.errName }</div>
-                        <input className="form-control mb-3" autoFocus placeholder="Email address" type="email"name="email"  onChange={ this.handleChangeInput } value={ this.state.email }/>
+                        <input className="form-control mb-3" placeholder="Email address" type="email"name="email"  onChange={ this.handleChangeInput } value={ this.state.email }/>
                         <div className="err mb-3 text-danger">{ this.state.errEmail }</div>
-                        <input className="form-control mb-3" autoFocus placeholder="Password" type="password" name="password" onChange={ this.handleChangeInput } value={ this.state.password }/>
+                        <input className="form-control mb-3" placeholder="Password" type="password" name="password" onChange={ this.handleChangeInput } value={ this.state.password }/>
                         <div className="err mb-3 text-danger">{ this.state.errPassword }</div>
                         <div className="err mb-3 text-danger">{ this.state.errPasswordMin }</div>
                         <div className="err mb-3 text-danger">{ this.state.errPasswordMax }</div>
-                        <input className="form-control mb-3" autoFocus placeholder="Confirm password" type="password" name="confirmPassword" onChange={ this.handleChangeInput } value={ this.state.confirmPassword }/>
-                        { this.state.errMatch && (<div className="err mb-3 text-danger">Pawword Doen't Match</div> )}
+                        <input className="form-control mb-3" placeholder="Confirm password" type="password" name="confirmPassword" onChange={ this.handleChangeInput } value={ this.state.confirmPassword }/>
+                        { this.state.errMatch && (<div className="err mb-3 text-danger">Password Doesn't Match</div> )}
                         <button className="btn btn-lg btn-outline-primary btn-block mt-3" type="submit">Create Account</button>
                     </form>
                     <Link to="/login">Already have an Account</Link>
                     </div>
                 </div>
             </React.Fragment>
-         );
+        );
     }
 
     handleChangeInput = (e)=> {
@@ -97,5 +98,5 @@ class RegisterComponent extends Component {
     }
 
 }
- 
+
 export default withRouter(RegisterComponent);

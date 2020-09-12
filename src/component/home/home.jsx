@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import SearchBar from './searchBar/searchBar'
 
 class HomeComponent extends Component {
     state = {  }
@@ -9,16 +10,19 @@ class HomeComponent extends Component {
             this.handleLogout()
         }
         return ( 
-            <React.Fragment>
+            <>
                 Welcome Home!
+                <br/><br/>
+                <SearchBar />
+                <br/><br/>
                 <button onClick={ this.handleLogout }>Login Out!</button>
-            </React.Fragment>
-         );
+            </>
+        );
     }
     handleLogout = ()=> {
         localStorage.setItem('currentUser', null)
         this.props.history.push('/login')
     }
 }
- 
+
 export default withRouter(HomeComponent);
